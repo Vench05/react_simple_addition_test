@@ -12,6 +12,10 @@
         .incorrect {
             color: red;
         }
+
+        #app, h1 {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -74,7 +78,9 @@
                         this.setState(state => ({
                             res: "",
                             score: this.state.score - 1,
-                            incorrect: true
+                            incorrect: true,
+                            num1: Math.floor(Math.random() * 10),
+                            num2: Math.floor(Math.random() * 10)
                         }))
 
                     }
