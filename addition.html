@@ -8,6 +8,11 @@
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .incorrect {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <h1>Addition</h1>
@@ -22,7 +27,8 @@
                     num1: 1,
                     num2: 1,
                     score: 0,
-                    res: ""
+                    res: "",
+                    incorrect: false
                 };
             }
 
@@ -45,9 +51,9 @@
             renderPlay() {
                 return (
                     <div>
-                        <h1>{this.state.num1} + {this.state.num2} </h1>
+                        <h1 className={this.state.incorrect ? "incorrect":""} >{this.state.num1} + {this.state.num2} </h1>
                         <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse} value={this.state.res}  />
-                        <h1> {this.state.score} </h1>
+                        <h1>Score: {this.state.score} </h1>
                     </div>
                 );
             }
@@ -60,12 +66,15 @@
                             score: this.state.score + 1,
                             num1: Math.floor(Math.random() * 10),
                             num2: Math.floor(Math.random() * 10),
-                            res: ""
+                            res: "",
+                            incorrect: false
                         }))
                     }
                     else {
                         this.setState(state => ({
-                            res: "Wrong"
+                            res: "",
+                            score: this.state.score - 1,
+                            incorrect: true
                         }))
 
                     }
